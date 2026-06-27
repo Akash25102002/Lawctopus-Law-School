@@ -1,4 +1,15 @@
+/* ============================================================
+   LAWCTOPUS LAW SCHOOL — LANDING PAGE JAVASCRIPT
+   script.js
+   ============================================================ */
+
 document.addEventListener('DOMContentLoaded', function () {
+
+  /* ──────────────────────────────────────────
+     1. COUNTDOWN TIMER
+     Counts down to June 28, 2026 11:59 PM IST
+     Injects into .card-deadline inside hero-card
+  ────────────────────────────────────────── */
   const DEADLINE = new Date('2026-06-28T23:59:00+05:30');
 
   function updateCountdown() {
@@ -65,7 +76,14 @@ document.addEventListener('DOMContentLoaded', function () {
     updateCountdown();
     setInterval(updateCountdown, 1000);
   }
-// ────────────────────────────────────────── REVEAL ANIMATION ON SCROLL Elements with the "reveal" class will fade in when they enter the viewport// ──────────────────────────────────────────
+
+
+  /* ──────────────────────────────────────────
+     2. SCROLL REVEAL ANIMATION
+     Adds .reveal class to cards and sections,
+     then uses IntersectionObserver to trigger
+     .visible when they enter the viewport
+  ────────────────────────────────────────── */
   const revealTargets = document.querySelectorAll(
     '.outcome-card, .timeline-item, .faculty-card, .testi-card, .who-card, .freelancing-points li'
   );
@@ -91,7 +109,11 @@ document.addEventListener('DOMContentLoaded', function () {
   revealTargets.forEach(el => observer.observe(el));
 
 
-  /* ────────────────────────────────────────── STICKY MOBILE CTA BAR Shows a fixed bottom bar on mobile with an enroll button after user scrolls past hero ────────────────────────────────────────── */
+  /* ──────────────────────────────────────────
+     3. STICKY MOBILE CTA BAR
+     Shows a fixed bottom bar on mobile with
+     an enroll button after user scrolls past hero
+  ────────────────────────────────────────── */
   const mobileBar = document.createElement('div');
   mobileBar.className = 'mobile-cta-bar';
   mobileBar.innerHTML = `
@@ -116,7 +138,10 @@ document.addEventListener('DOMContentLoaded', function () {
   if (heroSection) scrollWatcher.observe(heroSection);
 
 
-  /* ────────────────────────────────────────── SMOOTH SCROLL for all anchor links (fallback for older browsers) ────────────────────────────────────────── */
+  /* ──────────────────────────────────────────
+     4. SMOOTH SCROLL for all anchor links
+     (fallback for older browsers)
+  ────────────────────────────────────────── */
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener('click', function (e) {
       const target = document.querySelector(this.getAttribute('href'));
@@ -128,7 +153,11 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 
-  /* ────────────────────────────────────────── FAQ ACCORDION — close others when opening Native <details> elements already work,this adds the "only one open at a time" UX ────────────────────────────────────────── */
+  /* ──────────────────────────────────────────
+     5. FAQ ACCORDION — close others when opening
+     Native <details> elements already work,
+     this adds the "only one open at a time" UX
+  ────────────────────────────────────────── */
   const allDetails = document.querySelectorAll('details');
 
   allDetails.forEach(detail => {
@@ -144,7 +173,10 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 
-  /* ────────────────────────────────────────── NAV ENROLL BUTTON — highlight after scroll After scrolling 300px, make nav CTA pulse once ────────────────────────────────────────── */
+  /* ──────────────────────────────────────────
+     6. NAV ENROLL BUTTON — highlight after scroll
+     After scrolling 300px, make nav CTA pulse once
+  ────────────────────────────────────────── */
   const navCta = document.querySelector('.nav-cta');
   let pulsed = false;
 
